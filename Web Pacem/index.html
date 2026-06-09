@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yayasan Pande Cembes Mose (PACEM)</title>
+    <link rel="icon" type="image/x-icon" href="assets/Logo-PACEM1.png" />
+
+    <style>
+      :root {
+        --primary-color: #87ceeb;
+        --secondary-color: #f8f9fa;
+        --text-color: #333;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      html {
+        scroll-padding-top: 100px;
+      }
+
+      section[id] {
+        scroll-margin-top: 100px;
+      }
+
+      .hero-title-container {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .hero-logo {
+        width: 60px;
+        height: 60px;
+        object-fit: contain;
+      }
+
+      @media (max-width: 768px) {
+        .hero-title-container {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .hero-logo {
+          position: static;
+          transform: none;
+          margin: 1rem auto;
+        }
+
+        .hero .main-title {
+          font-size: 2rem;
+          margin-bottom: 0.5rem;
+        }
+      }
+
+      .logo-img {
+        width: 50px;
+        height: 50px;
+        object-fit: contain;
+      }
+
+      .profile-photo {
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin: 0 auto 1rem;
+        display: block;
+      }
+
+      .activity-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 1rem;
+      }
+
+      body {
+        line-height: 1.6;
+        color: var(--text-color);
+      }
+
+      .navbar {
+        background-color: white;
+        padding: 1rem;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo-container {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .logo-placeholder {
+        width: 50px;
+        height: 50px;
+        background-color: var(--primary-color);
+        border-radius: 50%;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--text-color);
+        font-weight: 500;
+      }
+
+      /* Language specific styling */
+      .lang-id,
+      .lang-en {
+        display: inline-block;
+      }
+
+      .position-list {
+        list-style: none;
+        padding: 0;
+        margin-top: 1rem;
+      }
+
+      .position-item {
+        margin-bottom: 0.75rem;
+        line-height: 1.6;
+      }
+
+      .position-item .lang-id,
+      .position-item .lang-en {
+        display: inline;
+        margin-right: 5px;
+      }
+
+      .language-switch {
+        background: var(--primary-color);
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        color: white;
+        cursor: pointer;
+      }
+
+      .hero {
+        background-color: var(--primary-color);
+        padding: 8rem 2rem 4rem;
+        text-align: center;
+        color: white;
+      }
+
+      .hero .main-title {
+        font-size: 3.5rem;
+        margin-bottom: 0.5rem;
+        font-weight: 700;
+      }
+
+      .hero .subtitle {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      .section {
+        padding: 4rem 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .section:nth-child(even) {
+        background-color: var(--secondary-color);
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 2rem;
+        color: var(--primary-color);
+      }
+
+      .profile-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+
+      .profile-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .photo-placeholder {
+        width: 200px;
+        height: 200px;
+        background-color: var(--primary-color);
+        margin: 0 auto 1rem;
+        border-radius: 10px;
+      }
+
+      .org-member {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .org-member .profile-photo {
+        margin-bottom: 1rem;
+      }
+
+      .org-member .position-list {
+        display: flex;
+        justify-content: center;
+      }
+
+      .org-member .position-item {
+        text-align: center;
+        list-style-type: none;
+      }
+
+      .activities-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+
+      .activity-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .contact {
+        background-color: var(--primary-color);
+        color: white;
+        text-align: center;
+        padding: 4rem 2rem;
+      }
+
+      .contact-info {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-content">
+        <div class="logo-container">
+          <img
+            src=".\assets\Logo-PACEM1.png"
+            alt="Logo PACEM"
+            class="logo-img"
+            loading="eager"
+          />
+          <h2>PACEM</h2>
+        </div>
+        <div class="nav-links">
+          <a href="#profile" class="lang-id">Profil Kami</a>
+          <a href="#profile" class="lang-en">Our Profile</a>
+          <a href="#vision" class="lang-id">Visi & Misi</a>
+          <a href="#vision" class="lang-en">Vision & Mission</a>
+          <a href="#organization" class="lang-id">Struktur Organisasi</a>
+          <a href="#organization" class="lang-en">Organization Structure</a>
+          <a href="#activities" class="lang-id">Kegiatan</a>
+          <a href="#activities" class="lang-en">Activities</a>
+        </div>
+        <button class="language-switch" onclick="toggleLanguage()">
+          ID/EN
+        </button>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-title-container">
+        <div>
+          <h1 class="main-title lang-id">Yayasan Pande Cembes Mose</h1>
+          <h1 class="main-title lang-en">Pande Cembes Mose Foundation</h1>
+        </div>
+        <img
+          src="assets/Logo-PACEM.jpg"
+          alt="Logo PACEM"
+          class="hero-logo"
+          loading="eager"
+        />
+      </div>
+      <h2 class="subtitle">(PACEM)</h2>
+      <p class="lang-id">Melayani dengan Hati, Membangun Masa Depan</p>
+      <p class="lang-en">Serving with Heart, Building the Future</p>
+    </section>
+
+    <section id="profile" class="section" data-aos="fade-up">
+      <h2 class="section-title lang-id">Profil Kami</h2>
+      <h2 class="section-title lang-en">Our Profile</h2>
+      <div class="profile-grid">
+        <div class="profile-card">
+          <h3 class="lang-id">Informasi Dasar</h3>
+          <h3 class="lang-en">Basic Information</h3>
+          <p>Akta Notaris: No. 04 Tanggal 19 Agustus 2019</p>
+          <p>SK Menteri Hukum dan HAM RI: AHU-0012178.AN.01.04 Tahun 2019</p>
+        </div>
+        <div class="profile-card">
+          <h3 class="lang-id">Pendiri</h3>
+          <h3 class="lang-en">Founder</h3>
+          <ul class="position-list">
+            <li class="position-item">
+              <span class="lang-id">Pendiri</span
+              ><span class="lang-en">Founder</span>: Yosep Min Palem
+            </li>
+          </ul>
+        </div>
+        <div class="profile-card">
+          <h3 class="lang-id">Alamat</h3>
+          <h3 class="lang-en">Address</h3>
+          <p>
+            Jln. Verhouven -- Desa Batu Cermin, Labuan Bajo, Kab. Manggarai
+            Barat
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="vision" class="section" data-aos="fade-up">
+      <h2 class="section-title lang-id">Visi & Misi</h2>
+      <h2 class="section-title lang-en">Vision & Mission</h2>
+      <div class="profile-card">
+        <h3 class="lang-id">Visi</h3>
+        <h3 class="lang-en">Vision</h3>
+        <p class="lang-id">
+          Terwujudnya kaum difabel yang terampil, mandiri dan bermartabat
+        </p>
+        <p class="lang-en">
+          Realization of skilled, independent and dignified people with
+          disabilities
+        </p>
+
+        <h3 class="lang-id">Misi</h3>
+        <h3 class="lang-en">Mission</h3>
+        <ol class="mission-list">
+          <li class="lang-id">
+            1. Mengadvokasi kepentingan kaum difabel agar martabatnya sebagai
+            manusia yang mulia terwujud
+          </li>
+          <li class="lang-en">
+            1. Advocating for the interests of people with disabilities so that
+            their dignity as noble humans is realized
+          </li>
+          <li class="lang-id">
+            2. Pendampingan kaum difabel dari segi kesehatan, ketrampilan dan
+            pengetahuan yang memadai
+          </li>
+          <li class="lang-en">
+            2. Assisting people with disabilities in terms of health, skills and
+            adequate knowledge
+          </li>
+          <li class="lang-id">
+            3. Kaum difabel memperoleh kesejahteraan sesuai yang diharapkan
+          </li>
+          <li class="lang-en">
+            3. People with disabilities achieve the expected welfare
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="organization" class="section" data-aos="fade-up">
+      <h2 class="section-title lang-id">Struktur Organisasi</h2>
+      <h2 class="section-title lang-en">Organization Structure</h2>
+      <div
+        class="profile-grid"
+        style="display: grid; grid-template-columns: 1fr; gap: 2rem"
+      >
+        <div class="profile-card">
+          <h3 class="section-title lang-id">Pembina</h3>
+          <h3 class="section-title lang-en">Supervisory Board</h3>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+              gap: 1rem;
+            "
+          >
+            <div class="org-member">
+              <img
+                src=".\assets\Pembina1-PACEM.jpg"
+                alt="Foto Ernesta Mei"
+                class="profile-photo"
+                loading="lazy"
+              />
+              <ul class="position-list">
+                <li class="position-item">
+                  <span class="lang-id">Pembina</span>
+                  <span class="lang-en">Supervisor</span>: Ernesta Mei, SE
+                </li>
+              </ul>
+            </div>
+            <div class="org-member">
+              <img
+                src=".\assets\Pembina2-PACEM.jpg"
+                alt="Foto Samuel Santosa Jun"
+                class="profile-photo"
+                loading="lazy"
+              />
+              <ul class="position-list">
+                <li class="position-item">
+                  <span class="lang-id">Pembina (Almarhum)</span>
+                  <span class="lang-en">Supervisor (Deceased)</span>: Samuel
+                  Santosa Jun
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="profile-card">
+          <h3 class="section-title lang-id">Pengurus</h3>
+          <h3 class="section-title lang-en">Management</h3>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+              gap: 1rem;
+            "
+          >
+            <div class="org-member">
+              <img
+                src=".\assets\Pengurus1-PACEM.jpg"
+                alt="Foto Yohanes Jehadu"
+                class="profile-photo"
+                loading="lazy"
+              />
+              <ul class="position-list">
+                <li class="position-item">
+                  <span class="lang-id">Ketua</span>
+                  <span class="lang-en">Chairman</span>: Yohanes Jehadu
+                </li>
+              </ul>
+            </div>
+            <div class="org-member">
+              <img
+                src=".\assets\Pengurus2-PACEM.jpg"
+                alt="Foto Leonardus Makur"
+                class="profile-photo"
+                loading="lazy"
+              />
+              <ul class="position-list">
+                <li class="position-item">
+                  <span class="lang-id">Sekretaris</span>
+                  <span class="lang-en">Secretary</span>: Leonardus Makur
+                </li>
+              </ul>
+            </div>
+            <div class="org-member">
+              <img
+                src=".\assets\Pengurus3-PACEM.jpg"
+                alt="Foto Tiburtius Ariko"
+                class="profile-photo"
+                loading="lazy"
+              />
+              <ul class="position-list">
+                <li class="position-item">
+                  <span class="lang-id">Bendahara</span>
+                  <span class="lang-en">Treasurer</span>: Tiburtius Ariko
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="profile-card">
+          <h3 class="section-title lang-id">Pengawas</h3>
+          <h3 class="section-title lang-en">Supervisors</h3>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+              gap: 1rem;
+            "
+          >
+            <div class="org-member">
+              <img
+                src=".\assets\Pengawas1-PACEM.jpg"
+                alt="Foto Yosep Min Palem"
+                class="profile-photo"
+                loading="lazy"
+              />
+              <ul class="position-list">
+                <li class="position-item">
+                  <span class="lang-id">Ketua</span>
+                  <span class="lang-en">Chairman</span>: Yosep Min Palem
+                </li>
+              </ul>
+            </div>
+            <div class="org-member">
+              <img
+                src=".\assets\Pengawas2-PACEM.jpg"
+                alt="Foto Aleksander Sauli Saramose"
+                class="profile-photo"
+                loading="lazy"
+              />
+              <ul class="position-list">
+                <li class="position-item">
+                  <span class="lang-id">Sekretaris</span>
+                  <span class="lang-en">Secretary</span>: Aleksander Sauli
+                  Saramose
+                </li>
+              </ul>
+            </div>
+            <div class="org-member">
+              <img
+                src=".\assets\Pengawas3-PACEM.jpg"
+                alt="Foto Mateus Sakeus"
+                class="profile-photo"
+                loading="lazy"
+              />
+              <ul class="position-list">
+                <li class="position-item">
+                  <span class="lang-id">Anggota</span>
+                  <span class="lang-en">Member</span>: Mateus Sakeus
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="activities" class="section" data-aos="fade-up">
+      <h2 class="section-title lang-id">Kegiatan Kami</h2>
+      <h2 class="section-title lang-en">Our Activities</h2>
+      <div class="activities-grid">
+        <div class="activity-card">
+          <img
+            src=".\assets/Kegiatan1.jpg"
+            alt="Pengembangan Wisata Alam Golo Cucu"
+            class="activity-image"
+            loading="lazy"
+          />
+          <h3 class="lang-id">Pengembangan Wisata Alam</h3>
+          <h3 class="lang-en">Nature Tourism Development</h3>
+          <p class="lang-id">
+            Kegiatan mendorong pengembangan wisata alam Golo Cucu di kampung
+            Nuri, Desa Kempo, Kec. Mbeliling, Mabar
+          </p>
+          <p class="lang-en">
+            Activities to promote the development of Golo Cucu natural tourism
+            in Nuri village, Kempo Village, Mbeliling District, Mabar
+          </p>
+        </div>
+        <div class="activity-card">
+          <img
+            src=".\assets/Kegiatan2.jpg"
+            alt="Pendidikan Inklusif"
+            class="activity-image"
+            loading="lazy"
+          />
+          <h3 class="lang-id">Pendidikan Inklusif/Pemberdayaan Kaum Difabel</h3>
+          <h3 class="lang-en">
+            Inclusive Education/Empowerment of People with Disabilities
+          </h3>
+          <p class="lang-id">
+            Mencari anak difabel untuk sekolah di SLBN Komodo
+          </p>
+          <p class="lang-en">
+            Finding children with disabilities to study at SLBN Komodo
+          </p>
+        </div>
+        <div class="activity-card">
+          <img
+            src=".\assets/Kegiatan3.jpg"
+            alt="Distribusi Koker Ketapang Kencana"
+            class="activity-image"
+            loading="lazy"
+          />
+          <h3 class="lang-id">Kegiatan Ekologis</h3>
+          <h3 class="lang-en">Ecological Activities</h3>
+          <p class="lang-id">
+            Menyiapkan koker Ketapang Kencana untuk dibagi kepada yang
+            membutuhkan dan penanaman pohon
+          </p>
+          <p class="lang-en">
+            Preparing Ketapang Kencana seedlings for distribution to those in
+            need and planting trees
+          </p>
+        </div>
+        <div class="activity-card">
+          <img
+            src=".\assets\kegiatan4.jpg"
+            alt="Pengembangan Wisata Rohani"
+            class="activity-image"
+            loading="lazy"
+          />
+          <h3 class="lang-id">Pengembangan Wisata Rohani</h3>
+          <h3 class="lang-en">Spiritual Tourism Development</h3>
+          <p class="lang-id">
+            Mendorong warga kampung Ndiri, Desa Nampar Macing, Kec. Sanonggoang,
+            Kab. Mabar untuk menjadikan Golo Kempo sebagai Bukit Doa (Wisata
+            Rohani)
+          </p>
+          <p class="lang-en">
+            Encouraging residents of Ndiri village, Nampar Macing Village,
+            Sanonggoang District, Mabar Regency to develop Golo Kempo as a
+            Prayer Hill (Spiritual Tourism)
+          </p>
+        </div>
+        <div class="activity-card">
+          <img
+            src=".\assets/Kegiatan5.jpg"
+            alt="Program Hidroterapi"
+            class="activity-image"
+            loading="lazy"
+          />
+          <h3 class="lang-id">Program Hidroterapi</h3>
+          <h3 class="lang-en">Hydrotherapy Program</h3>
+          <p class="lang-id">
+            Mendukung hidroterapi bagi anak-anak di SLBN Komodo di kolam renang
+            Panti St. Damian Binongko, Labuan Bajo
+          </p>
+          <p class="lang-en">
+            Supporting hydrotherapy for children at SLBN Komodo in the St.
+            Damian Binongko Orphanage swimming pool, Labuan Bajo
+          </p>
+        </div>
+        <div class="activity-card">
+          <img
+            src=".\assets/Kegiatan6.jpg"
+            alt="Pengembangan Bakat"
+            class="activity-image"
+            loading="lazy"
+          />
+          <h3 class="lang-id">Pengembangan Bakat</h3>
+          <h3 class="lang-en">Talent Development</h3>
+          <p class="lang-id">
+            Mendukung pengembangan bakat anak-anak di SLBN Komodo
+          </p>
+          <p class="lang-en">
+            Supporting talent development for children at SLBN Komodo
+          </p>
+        </div>
+        <div class="activity-card">
+          <img
+            src=".\assets/Kegiatan7.jpg"
+            alt="Program Penanaman Kelor"
+            class="activity-image"
+            loading="lazy"
+          />
+          <h3 class="lang-id">Program Penanaman Kelor</h3>
+          <h3 class="lang-en">Moringa Planting Program</h3>
+          <p class="lang-id">Kegiatan penanaman Kelor di SLBN Komodo</p>
+          <p class="lang-en">Moringa planting activities at SLBN Komodo</p>
+        </div>
+        <div class="activity-card">
+          <img
+            src=".\assets/Kegiatan8.jpg"
+            alt="Pendampingan UMKM"
+            class="activity-image"
+            loading="lazy"
+          />
+          <h3 class="lang-id">Pendampingan UMKM</h3>
+          <h3 class="lang-en">MSME Assistance</h3>
+          <p class="lang-id">Pendampingan UMKM SLBN Komodo, Labuan Bajo</p>
+          <p class="lang-en">Assistance for MSMEs SLBN Komodo, Labuan Bajo</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact">
+      <div class="contact-info">
+        <h2 class="lang-id">Hubungi Kami</h2>
+        <h2 class="lang-en">Contact Us</h2>
+        <p>Ernesta Mei: 085237648406</p>
+        <p>Yosep Min Palem: 081339697702</p>
+        <p>
+          Jln. Verhouven -- Desa Batu Cermin, Labuan Bajo, Kab. Manggarai Barat
+        </p>
+      </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 1000,
+        once: true,
+      });
+
+      let currentLang = "id";
+
+      function toggleLanguage() {
+        currentLang = currentLang === "id" ? "en" : "id";
+        updateLanguage();
+      }
+
+      function updateLanguage() {
+        document.querySelectorAll(".lang-id").forEach((el) => {
+          el.style.display = currentLang === "id" ? "block" : "none";
+        });
+        document.querySelectorAll(".lang-en").forEach((el) => {
+          el.style.display = currentLang === "en" ? "block" : "none";
+        });
+      }
+
+      updateLanguage();
+    </script>
+  </body>
+</html>
